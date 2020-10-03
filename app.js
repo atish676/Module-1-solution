@@ -1,28 +1,29 @@
 (function(){
 	'use strict';
+	
 	angular.module('LunchCheck', [])
 	.controller('LunchCheckController', controller);
 		controller.$inject = ['$scope'];
 		
 		function controller($scope){
-			$scope.input = "";
+			$scope.dishes = "";
 			$scope.msg = "";
 			
 			$scope.answer = function(){
-				$scope.answers = count($scope.input);
+				$scope.msg = count($scope.dishes);
 			};
 			
 			function count(string){
-				var count = 0;
-				for(var i=0; i<string.length; i++){
-					if(string.charCodeAt(i) == 44){
-						++count;
-					}
-				}
-				if(count == 0){
+				var num = 0;
+				var str = 0;
+				const arr = string.split(",");
+				num = arr.length;
+				str = string.length;
+				
+				if(str == 0){
 					return "Please enter data first";
 				}
-				else if(count <= 3){
+				if(num <= 3){
 					return "Enjoy!";
 				}
 				else{
